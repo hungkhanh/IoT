@@ -7,27 +7,27 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 void reconnectmqttserver() {
-while (!client.connected()) {
-Serial.print("Attempting MQTT connection...");
-String clientId = "ESP32Client-";
- clientId += String(random(0xffff), HEX);
-if (client.connect(clientId.c_str())) {
-Serial.println("connected");
-} else {
-Serial.print("failed, rc=");
-Serial.print(client.state());
-Serial.println(" try again in 5 seconds");
-delay(5000);
-}
-}
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    String clientId = "ESP32Client-";
+    clientId += String(random(0xffff), HEX);
+    if (client.connect(clientId.c_str())) {
+      Serial.println("connected");
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      delay(5000);
+    }
+  }
 }
 
 char msgmqtt[50];
 void callback(char* topic, byte* payload, unsigned int length) {
   String MQTT_DATA = "";
   for (int i=0;i<length;i++) {
-   MQTT_DATA += (char)payload[i];}
-
+   MQTT_DATA += (char)payload[i];
+  }
 }
 
 void setup()

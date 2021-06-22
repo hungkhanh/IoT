@@ -49,7 +49,7 @@ void setup() {
   Serial.println("Connected");
   Serial.println("Your IP is");
   Serial.println((WiFi.localIP()));
-  client.setServer("192.168.1.104", 1883);
+  client.setServer("192.168.1.105", 1883);
   client.setCallback(callback);
 }
 
